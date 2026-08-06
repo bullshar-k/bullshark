@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Self hosting monero node - bullshark369.org</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="http://localhost:1313/favicon.png">
+  <link rel="canonical" href="http://localhost:1313/posts/monero/" />
+    
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/assets/css/extended.css">
+
+  
+    <meta name="description" content="Straightforward process with little fluff"/>
+    <meta name="keywords" content="Nathan Buache, Test Manager, QA, Quality Assurance, Lausanne, Switzerland, Web Testing, Software Testing, QoQa"/>
+    <meta property="og:title" content="Self hosting monero node - bullshark369.org"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="http://localhost:1313/posts/monero/"/>
+    <meta property="og:site_name" content="bullshark369.org"/>
+    
+    <meta property="og:description" content="Straightforward process with little fluff"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Self hosting monero node"/>
+    <meta name="twitter:description" content="Straightforward process with little fluff"/>
+    
+    
+  
+
+  
+
+  
+  
+  
+</head>
+
+
+
+
+<body class='page page-blog-single'>
+  <div id="menu-main-mobile" class="menu-main-mobile">
+    <ul class="menu">
+        
+        
+            
+                <li class="menu-item-home">
+                    <a href="http://localhost:1313/">Home</a>
+                </li>
+            
+        
+            
+                <li class="menu-item-blog">
+                    <a href="http://localhost:1313/posts/">Blog</a>
+                </li>
+            
+        
+            
+                <li class="menu-item-contact">
+                    <a href="http://localhost:1313/pages/contact/">Contact</a>
+                </li>
+            
+        
+    </ul>
+</div>
+  <div id="wrapper" class="wrapper">
+    <div class='header'>
+  <div class="menu-main">
+    <ul>
+      
+      
+      
+      
+      <li class="menu-item-home ">
+        <a href="/">
+          
+          <span>Home</span>
+        </a>
+      </li>
+      
+      
+      
+      <li class="menu-item-blog ">
+        <a href="/posts/">
+          
+          <span>Blog</span>
+        </a>
+      </li>
+      
+      
+      
+      <li class="menu-item-contact ">
+        <a href="/pages/contact/">
+          
+          <span>Contact</span>
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+  <div id="toggle-menu-main-mobile" class="hamburger-trigger">
+    <button class="hamburger">Menu</button>
+  </div>
+</div>
+    
+  <div class="blog">
+    <div class="intro">
+      <h1>Self hosting monero node</h1>
+      
+    </div>
+    <div class="content">
+      <hr>
+<h2 id="on-server">On server</h2>
+<pre tabindex="0"><code>apt update &amp;&amp; apt update
+apt install monero
+monerod --datadir ~/.bitmoner --prune-blockchain
+// ^ THIS WILL TAKE 2-6 DAYS DEPENDING ON INTERNET SPEED
+monerod --rpc-bind-ip=0.0.0.0 --rpc-bind-port=18081 --confirm-external-bind
+// ^ ONLY DO THIS IF USING LAN ONLY
+</code></pre><p>Took long, super easy though.</p>
+<hr>
+<h2 id="on-client">On client</h2>
+<pre tabindex="0"><code>sudo pacman -S monero
+// then add to bashRC
+alias wallert=&#34;monero-wallet-cli --wallet /wallet/address/path --daemon-address 192.168.1.67:18081 --trusted-daemon&#34;
+</code></pre><p>This way when I type wallert it opens my wallet, and I don&rsquo;t need a lengthy command.</p>
+<h3 id="side-note">Side note</h3>
+<p>I did forget (I swear I know what it is but it wasn&rsquo;t working) the password to this VM. So I had to delete it and resync it TwT</p>
+
+    </div>
+  </div>
+
+    <div class="footer">
+  <p class="footer-credit">@bullshark369.org maintained by shark</p>
+  
+  <div class="footer-social">
+    
+      
+        <div class="social-link">
+          <a href="https://github.com/bullshar-k" title="GitHub" target="_blank" rel="noopener">
+            GitHub
+          </a>
+        </div>
+      
+    
+      
+        <div class="social-link">
+          <a href="mailto:bullsharkgunsemail@pm.me" title="Email" target="_blank" rel="noopener">
+            Email
+          </a>
+        </div>
+      
+    
+      
+        <button type="button" class="social-link social-copy" data-copy="@bullshar_k:matrix.org" title="Copy Matrix to clipboard">
+          <span class="social-copy-label">Matrix</span>
+        </button>
+      
+    
+  </div>
+  
+</div>
+
+<script>
+(function () {
+  var btns = document.querySelectorAll('.social-copy');
+  btns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var text = btn.getAttribute('data-copy');
+      var label = btn.querySelector('.social-copy-label, .contact-social-name');
+      var original = label ? label.textContent : btn.textContent;
+
+      function done() {
+        label.textContent = 'Copied!';
+        setTimeout(function () { label.textContent = original; }, 1500);
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(done);
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(ta);
+        done();
+      }
+    });
+  });
+})();
+</script>
+
+  </div>
+
+  
+
+  
+    <script type="text/javascript" src="/js/bundle.js"></script>
+  
+
+  
+  
+
+  
+  
+
+  
+
+</body>
+</html>

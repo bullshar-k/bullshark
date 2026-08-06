@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Proxmox - bullshark369.org</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="http://localhost:1313/favicon.png">
+  <link rel="canonical" href="http://localhost:1313/posts/proxmox/" />
+    
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/assets/css/extended.css">
+
+  
+    <meta name="description" content="My great experience with proxmox on 2 different servers"/>
+    <meta name="keywords" content="Nathan Buache, Test Manager, QA, Quality Assurance, Lausanne, Switzerland, Web Testing, Software Testing, QoQa"/>
+    <meta property="og:title" content="Proxmox - bullshark369.org"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="http://localhost:1313/posts/proxmox/"/>
+    <meta property="og:site_name" content="bullshark369.org"/>
+    
+    <meta property="og:description" content="My great experience with proxmox on 2 different servers"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Proxmox"/>
+    <meta name="twitter:description" content="My great experience with proxmox on 2 different servers"/>
+    
+    
+  
+
+  
+
+  
+  
+  
+</head>
+
+
+
+
+<body class='page page-blog-single'>
+  <div id="menu-main-mobile" class="menu-main-mobile">
+    <ul class="menu">
+        
+        
+            
+                <li class="menu-item-home">
+                    <a href="http://localhost:1313/">Home</a>
+                </li>
+            
+        
+            
+                <li class="menu-item-blog">
+                    <a href="http://localhost:1313/posts/">Blog</a>
+                </li>
+            
+        
+            
+                <li class="menu-item-contact">
+                    <a href="http://localhost:1313/pages/contact/">Contact</a>
+                </li>
+            
+        
+    </ul>
+</div>
+  <div id="wrapper" class="wrapper">
+    <div class='header'>
+  <div class="menu-main">
+    <ul>
+      
+      
+      
+      
+      <li class="menu-item-home ">
+        <a href="/">
+          
+          <span>Home</span>
+        </a>
+      </li>
+      
+      
+      
+      <li class="menu-item-blog ">
+        <a href="/posts/">
+          
+          <span>Blog</span>
+        </a>
+      </li>
+      
+      
+      
+      <li class="menu-item-contact ">
+        <a href="/pages/contact/">
+          
+          <span>Contact</span>
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+  <div id="toggle-menu-main-mobile" class="hamburger-trigger">
+    <button class="hamburger">Menu</button>
+  </div>
+</div>
+    
+  <div class="blog">
+    <div class="intro">
+      <h1>Proxmox</h1>
+      
+    </div>
+    <div class="content">
+      <h2 id="opinion">Opinion</h2>
+<p>I run proxmox on two PCs. A dell optiplex and a custom built server focused PC. The Optiplex handles my firewall and the other PC handles DNS and some other services.
+Genuinely an amazing free piece of sotware. Much better than ESXi. From the networking, to the UI, to the virtualization, it is a great type 1 hypervisor.</p>
+<h2 id="how-to">How to</h2>
+<h3 id="flash-proxmox-onto-drive">Flash proxmox onto drive</h3>
+<pre tabindex="0"><code>sudo wipefs -af /dev/sda
+sudo dd if=proxmox.iso of=/dev/sda bs=4M conv=fsync
+sync &amp;&amp; sync
+sudo eject /dev/sda
+</code></pre><h3 id="allow-bios-to-do-things">Allow BIOS to do things</h3>
+<ul>
+<li>Set proxmox USB to top of boot priority</li>
+<li>Turn off secure boot</li>
+<li>Enable KVM &amp; IOMMU</li>
+<li>Enable above 4G decoding</li>
+<li>Disable wait for F1 when errors
+This is really annoying, it will wait for you to press F1 if it detects an error, running it headless with no output at all will cause an error, making you have to plug
+a keyboard into your server and press F1.</li>
+<li>Disable secure boot or set to &ldquo;other os&rdquo;</li>
+<li>Ensure secure boot allows UEFI USB boot</li>
+</ul>
+<h3 id="installation">Installation</h3>
+<p>It will boot, and you literaly just answer your way through the setup prompts. Super easy.</p>
+
+    </div>
+  </div>
+
+    <div class="footer">
+  <p class="footer-credit">@bullshark369.org maintained by shark</p>
+  
+  <div class="footer-social">
+    
+      
+        <div class="social-link">
+          <a href="https://github.com/bullshar-k" title="GitHub" target="_blank" rel="noopener">
+            GitHub
+          </a>
+        </div>
+      
+    
+      
+        <div class="social-link">
+          <a href="mailto:bullsharkgunsemail@pm.me" title="Email" target="_blank" rel="noopener">
+            Email
+          </a>
+        </div>
+      
+    
+      
+        <button type="button" class="social-link social-copy" data-copy="@bullshar_k:matrix.org" title="Copy Matrix to clipboard">
+          <span class="social-copy-label">Matrix</span>
+        </button>
+      
+    
+  </div>
+  
+</div>
+
+<script>
+(function () {
+  var btns = document.querySelectorAll('.social-copy');
+  btns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var text = btn.getAttribute('data-copy');
+      var label = btn.querySelector('.social-copy-label, .contact-social-name');
+      var original = label ? label.textContent : btn.textContent;
+
+      function done() {
+        label.textContent = 'Copied!';
+        setTimeout(function () { label.textContent = original; }, 1500);
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(done);
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(ta);
+        done();
+      }
+    });
+  });
+})();
+</script>
+
+  </div>
+
+  
+
+  
+    <script type="text/javascript" src="/js/bundle.js"></script>
+  
+
+  
+  
+
+  
+  
+
+  
+
+</body>
+</html>

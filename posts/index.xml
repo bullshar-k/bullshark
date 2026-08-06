@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Blog on bullshark369.org</title>
+		<link>http://localhost:1313/posts/</link>
+		<description>Recent content in Blog on bullshark369.org</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Wed, 05 Aug 2026 00:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Hugo &amp; caddy</title>
+				<link>http://localhost:1313/posts/caddy/</link>
+				<pubDate>Wed, 05 Aug 2026 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/posts/caddy/</guid>
+				<description>&lt;h1 id=&#34;hugo&#34;&gt;Hugo&lt;/h1&gt;&#xA;&lt;p&gt;Don&amp;rsquo;t get me wrong, Hugo is well made and &amp;ldquo;easy to use&amp;rdquo;. However, it is not at all intuitive. Once you know it its amazing, if you don&amp;rsquo;t its terrible.&lt;/p&gt;&#xA;&lt;h1 id=&#34;caddy&#34;&gt;Caddy&lt;/h1&gt;&#xA;&lt;p&gt;Caddy is much more straght forward for simple webserver use than nginx.&lt;/p&gt;&#xA;&lt;table&gt;&#xA;&#x9;&lt;thead&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;Thing&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;Place&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/thead&gt;&#xA;&#x9;&lt;tbody&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;Config file&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;/etc/caddy/Caddyfile&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;Content&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;/www/var/web.site/&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;SSL&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;/etc/caddy/ssl/&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/tbody&gt;&#xA;&lt;/table&gt;</description>
+			</item>
+			<item>
+				<title>VPS proxies with wireguard tunnels</title>
+				<link>http://localhost:1313/posts/wireguard/</link>
+				<pubDate>Sat, 25 Jul 2026 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/posts/wireguard/</guid>
+				<description>&lt;h2 id=&#34;quick-guide&#34;&gt;Quick guide&lt;/h2&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apt update &amp;amp;&amp;amp; apt upgrade&#xA;apt install wireguard-tools git go iptables&#xA;git clone https://github.com/bullshar-k/wg.conf&#xA;cd wgconf&#xA;go build main.go&#xA;./main -peer 10 -dest server_ip -port 51855&#xA;mv server.conf /etc/wireguard&#xA;wg-quick up server&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;From there you move the client 1-10 onto the appropriate clients and use wg-quick up on them too.&#xA;Depending on your VPS you may need traffic forwarding post up rules like this;&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;PostUp = iptables -A FORWARD -i server -j ACCEPT&#xA;PostUp = iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE&#xA;PostDown = iptables -D FORWARD -i server -j ACCEPT&#xA;PostDown = iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;em&gt;If it isn&amp;rsquo;t apparent this goes in the &lt;code&gt;[INTERFACE]&lt;/code&gt; section after the interface info before the first &lt;code&gt;[PEER]&lt;/code&gt;&#xA;Ensure &lt;code&gt;server&lt;/code&gt; is the name of the .conf file as that will be the name of the interface, and &lt;code&gt;eth0&lt;/code&gt; is the name of your WAN facing NIC interface.&lt;/em&gt;&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Self hosting monero node</title>
+				<link>http://localhost:1313/posts/monero/</link>
+				<pubDate>Fri, 24 Jul 2026 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/posts/monero/</guid>
+				<description>&lt;hr&gt;&#xA;&lt;h2 id=&#34;on-server&#34;&gt;On server&lt;/h2&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apt update &amp;amp;&amp;amp; apt update&#xA;apt install monero&#xA;monerod --datadir ~/.bitmoner --prune-blockchain&#xA;// ^ THIS WILL TAKE 2-6 DAYS DEPENDING ON INTERNET SPEED&#xA;monerod --rpc-bind-ip=0.0.0.0 --rpc-bind-port=18081 --confirm-external-bind&#xA;// ^ ONLY DO THIS IF USING LAN ONLY&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Took long, super easy though.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;on-client&#34;&gt;On client&lt;/h2&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo pacman -S monero&#xA;// then add to bashRC&#xA;alias wallert=&amp;#34;monero-wallet-cli --wallet /wallet/address/path --daemon-address 192.168.1.67:18081 --trusted-daemon&amp;#34;&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This way when I type wallert it opens my wallet, and I don&amp;rsquo;t need a lengthy command.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>OpenRC vs SystemD</title>
+				<link>http://localhost:1313/posts/benchmark/</link>
+				<pubDate>Tue, 21 Jul 2026 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/posts/benchmark/</guid>
+				<description>&lt;p&gt;Both tests were done separately, not in concurrency, with the same background activity on the host machine. Scores are difference from Arch - Artix. If the number is positive Arch scored higher. Percent diffs are calcualted as follows: 100(|diff|/arch&amp;rsquo;s score)&lt;/p&gt;&#xA;&lt;p&gt;Gentoo wiki has an article with the breakdown comparison of these two @&lt;a href=&#34;https://wiki.gentoo.org/wiki/Comparison_of_init_systems&#34;&gt;Comparison of init systems&lt;/a&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;environment&#34;&gt;Environment&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;&#x9;&lt;thead&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;Ram&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;Swap&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;Storage&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;Filesys&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;DE&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;Compiler&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;Benchmark&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/thead&gt;&#xA;&#x9;&lt;tbody&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;16GiB&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;None&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;50GiB NVMe&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;ext4&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;none, TTY&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;GCC 13.3.0&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;FOSSbench&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;results&#34;&gt;Results&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;&#x9;&lt;thead&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;Native integer math&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;Wide integer math&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;Floating point math&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;Prime numbers&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;Extended instructions&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;Compression&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;Encryption&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;Physics&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;Sorting&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;Memory latency&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;Memory bandwidth&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/thead&gt;&#xA;&#x9;&lt;tbody&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;-514.3&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;-689.5&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;277&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;-44.5&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;492.2&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;2079.9&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;213&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;78&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;224&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;-4&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;15568.7&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;-0.41%&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;-0.59%&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;1.34%&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;-0.35%&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;0.19%&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;20.66%&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;2.4%&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;2.53%&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;6.94%&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;-5.39%&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;9.04%&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/tbody&gt;&#xA;&lt;/table&gt;</description>
+			</item>
+			<item>
+				<title>OPNsense</title>
+				<link>http://localhost:1313/posts/opnsense/</link>
+				<pubDate>Fri, 19 Jun 2026 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/posts/opnsense/</guid>
+				<description>&lt;h2 id=&#34;opinion&#34;&gt;Opinion&lt;/h2&gt;&#xA;&lt;p&gt;OPNsense is built on FreeBSD which has a broken network stack. The devs are great but I can&amp;rsquo;t recommend it. Use VyOS.&#xA;Also, having to configure 11 different areas in a website to set up a wireguard tunnel sucks compared to CLI where you just put &lt;code&gt;wireguard.conf&lt;/code&gt;in &lt;code&gt;/etc/wireguard/&lt;/code&gt; and run &lt;code&gt;wg-quick up wireguard&lt;/code&gt;.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Proxmox</title>
+				<link>http://localhost:1313/posts/proxmox/</link>
+				<pubDate>Fri, 19 Jun 2026 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/posts/proxmox/</guid>
+				<description>&lt;h2 id=&#34;opinion&#34;&gt;Opinion&lt;/h2&gt;&#xA;&lt;p&gt;I run proxmox on two PCs. A dell optiplex and a custom built server focused PC. The Optiplex handles my firewall and the other PC handles DNS and some other services.&#xA;Genuinely an amazing free piece of sotware. Much better than ESXi. From the networking, to the UI, to the virtualization, it is a great type 1 hypervisor.&lt;/p&gt;&#xA;&lt;h2 id=&#34;how-to&#34;&gt;How to&lt;/h2&gt;&#xA;&lt;h3 id=&#34;flash-proxmox-onto-drive&#34;&gt;Flash proxmox onto drive&lt;/h3&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo wipefs -af /dev/sda&#xA;sudo dd if=proxmox.iso of=/dev/sda bs=4M conv=fsync&#xA;sync &amp;amp;&amp;amp; sync&#xA;sudo eject /dev/sda&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;allow-bios-to-do-things&#34;&gt;Allow BIOS to do things&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Set proxmox USB to top of boot priority&lt;/li&gt;&#xA;&lt;li&gt;Turn off secure boot&lt;/li&gt;&#xA;&lt;li&gt;Enable KVM &amp;amp; IOMMU&lt;/li&gt;&#xA;&lt;li&gt;Enable above 4G decoding&lt;/li&gt;&#xA;&lt;li&gt;Disable wait for F1 when errors&#xA;This is really annoying, it will wait for you to press F1 if it detects an error, running it headless with no output at all will cause an error, making you have to plug&#xA;a keyboard into your server and press F1.&lt;/li&gt;&#xA;&lt;li&gt;Disable secure boot or set to &amp;ldquo;other os&amp;rdquo;&lt;/li&gt;&#xA;&lt;li&gt;Ensure secure boot allows UEFI USB boot&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;installation&#34;&gt;Installation&lt;/h3&gt;&#xA;&lt;p&gt;It will boot, and you literaly just answer your way through the setup prompts. Super easy.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Linux</title>
+				<link>http://localhost:1313/posts/linux/</link>
+				<pubDate>Sun, 01 Feb 2026 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/posts/linux/</guid>
+				<description>&lt;h2 id=&#34;preamble&#34;&gt;Preamble&lt;/h2&gt;&#xA;&lt;p&gt;I was already familiar with Linux and had used it on this date, however, I had stopped playing Tarkov which had kept me on Windows. So on this date I switched.&#xA;I pretty quickly went mint -&amp;gt; cachy -&amp;gt; arch in the course of a week or so.&lt;/p&gt;&#xA;&lt;h2 id=&#34;tierlist&#34;&gt;Tierlist&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;&#x9;&lt;thead&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;S&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;Arch Alpine&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/thead&gt;&#xA;&#x9;&lt;tbody&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;A&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;Artix NixOS Mint Cachy Debian Fedora&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;B&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;Ubuntu Endeavour Gentoo&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;C&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;Bazzite CentOS&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/tbody&gt;&#xA;&lt;/table&gt;</description>
+			</item>
+	</channel>
+</rss>

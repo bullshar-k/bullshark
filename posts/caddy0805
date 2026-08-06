@@ -1,0 +1,8 @@
+---
+title: "Hello World"
+date: 2026-08-05
+draft: false
+description: "The obligatory first post."
+---
+
+This is your first post. The file name `hello-world` becomes the URL `/posts/hello-world/`, and the front matter `description` shows in the post summary on the Blog and homepage listings.

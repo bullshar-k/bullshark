@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Contact - bullshark369.org</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="http://localhost:1313/favicon.png">
+  <link rel="canonical" href="http://localhost:1313/pages/contact/" />
+    
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/assets/css/extended.css">
+
+  
+    <meta name="description" content="Get in touch"/>
+    <meta name="keywords" content="Nathan Buache, Test Manager, QA, Quality Assurance, Lausanne, Switzerland, Web Testing, Software Testing, QoQa"/>
+    <meta property="og:title" content="Contact - bullshark369.org"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="http://localhost:1313/pages/contact/"/>
+    <meta property="og:site_name" content="bullshark369.org"/>
+    
+    <meta property="og:description" content="Get in touch"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Contact"/>
+    <meta name="twitter:description" content="Get in touch"/>
+    
+    
+  
+
+  
+
+  
+  
+  
+</head>
+
+
+
+
+<body class='page '>
+  <div id="menu-main-mobile" class="menu-main-mobile">
+    <ul class="menu">
+        
+        
+            
+                <li class="menu-item-home">
+                    <a href="http://localhost:1313/">Home</a>
+                </li>
+            
+        
+            
+                <li class="menu-item-blog">
+                    <a href="http://localhost:1313/posts/">Blog</a>
+                </li>
+            
+        
+            
+                <li class="menu-item-contact">
+                    <a href="http://localhost:1313/pages/contact/">Contact</a>
+                </li>
+            
+        
+    </ul>
+</div>
+  <div id="wrapper" class="wrapper">
+    <div class='header'>
+  <div class="menu-main">
+    <ul>
+      
+      
+      
+      
+      <li class="menu-item-home ">
+        <a href="/">
+          
+          <span>Home</span>
+        </a>
+      </li>
+      
+      
+      
+      <li class="menu-item-blog ">
+        <a href="/posts/">
+          
+          <span>Blog</span>
+        </a>
+      </li>
+      
+      
+      
+      <li class="menu-item-contact active">
+        <a href="/pages/contact/">
+          
+          <span>Contact</span>
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+  <div id="toggle-menu-main-mobile" class="hamburger-trigger">
+    <button class="hamburger">Menu</button>
+  </div>
+</div>
+    
+<div class="contact-page">
+  <h1 class="contact-title">Contact</h1>
+
+  
+  <div class="contact-intro"><p>Here is some more of me, incase you are curious.</p>
+</div>
+  
+
+  
+  <div class="contact-social">
+    
+      
+        <a class="contact-social-item" href="https://github.com/bullshar-k" target="_blank" rel="noopener">
+          <span class="contact-social-name">GitHub</span>
+          <span class="contact-social-desc">Incase you are curious</span>
+        </a>
+      
+    
+      
+        <a class="contact-social-item" href="mailto:bullsharkgunsemail@pm.me" target="_blank" rel="noopener">
+          <span class="contact-social-name">Email</span>
+          <span class="contact-social-desc">Get in touch directly</span>
+        </a>
+      
+    
+      
+        <button type="button" class="contact-social-item social-copy" data-copy="@bullshar_k:matrix.org">
+          <span class="contact-social-name social-copy-label">Matrix</span>
+          <span class="contact-social-desc">Primary form of contact</span>
+        </button>
+      
+    
+  </div>
+  
+</div>
+
+    <div class="footer">
+  <p class="footer-credit">@bullshark369.org maintained by shark</p>
+  
+  <div class="footer-social">
+    
+      
+        <div class="social-link">
+          <a href="https://github.com/bullshar-k" title="GitHub" target="_blank" rel="noopener">
+            GitHub
+          </a>
+        </div>
+      
+    
+      
+        <div class="social-link">
+          <a href="mailto:bullsharkgunsemail@pm.me" title="Email" target="_blank" rel="noopener">
+            Email
+          </a>
+        </div>
+      
+    
+      
+        <button type="button" class="social-link social-copy" data-copy="@bullshar_k:matrix.org" title="Copy Matrix to clipboard">
+          <span class="social-copy-label">Matrix</span>
+        </button>
+      
+    
+  </div>
+  
+</div>
+
+<script>
+(function () {
+  var btns = document.querySelectorAll('.social-copy');
+  btns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var text = btn.getAttribute('data-copy');
+      var label = btn.querySelector('.social-copy-label, .contact-social-name');
+      var original = label ? label.textContent : btn.textContent;
+
+      function done() {
+        label.textContent = 'Copied!';
+        setTimeout(function () { label.textContent = original; }, 1500);
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(done);
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(ta);
+        done();
+      }
+    });
+  });
+})();
+</script>
+
+  </div>
+
+  
+
+  
+    <script type="text/javascript" src="/js/bundle.js"></script>
+  
+
+  
+  
+
+  
+  
+
+  
+
+</body>
+</html>

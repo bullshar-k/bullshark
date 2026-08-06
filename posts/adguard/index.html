@@ -4,27 +4,27 @@
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Blog - bullshark369.org</title>
+  <title>Adguard home - bullshark369.org</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="http://localhost:1313/favicon.png">
-  <link rel="canonical" href="http://localhost:1313/posts/" />
+  <link rel="canonical" href="http://localhost:1313/posts/adguard/" />
     
     
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/assets/css/extended.css">
 
   
-    <meta name="description" content="The afformentioned sometimes informative rants."/>
+    <meta name="description" content="Setting up adguard home, and mostly my issues with LAN sharing on Mullvad"/>
     <meta name="keywords" content="Nathan Buache, Test Manager, QA, Quality Assurance, Lausanne, Switzerland, Web Testing, Software Testing, QoQa"/>
-    <meta property="og:title" content="Blog - bullshark369.org"/>
+    <meta property="og:title" content="Adguard home - bullshark369.org"/>
     <meta property="og:type" content="website"/>
-    <meta property="og:url" content="http://localhost:1313/posts/"/>
+    <meta property="og:url" content="http://localhost:1313/posts/adguard/"/>
     <meta property="og:site_name" content="bullshark369.org"/>
     
-    <meta property="og:description" content="The afformentioned sometimes informative rants."/>
+    <meta property="og:description" content="Setting up adguard home, and mostly my issues with LAN sharing on Mullvad"/>
     <meta name="twitter:card" content="summary_large_image"/>
-    <meta name="twitter:title" content="Blog"/>
-    <meta name="twitter:description" content="The afformentioned sometimes informative rants."/>
+    <meta name="twitter:title" content="Adguard home"/>
+    <meta name="twitter:description" content="Setting up adguard home, and mostly my issues with LAN sharing on Mullvad"/>
     
     
   
@@ -39,7 +39,7 @@
 
 
 
-<body class='page page-blog-list'>
+<body class='page page-blog-single'>
   <div id="menu-main-mobile" class="menu-main-mobile">
     <ul class="menu">
         
@@ -81,7 +81,7 @@
       
       
       
-      <li class="menu-item-blog active">
+      <li class="menu-item-blog ">
         <a href="/posts/">
           
           <span>Blog</span>
@@ -104,63 +104,24 @@
   </div>
 </div>
     
-  <div class="intro">
-    <h1>Blog</h1>
-    <p>The afformentioned sometimes informative rants.</p>
+  <div class="blog">
+    <div class="intro">
+      <h1>Adguard home</h1>
+      
+    </div>
+    <div class="content">
+      <hr>
+<h2 id="installation-itself">Installation itself</h2>
+<p>Very easy, good jobs on the devs overall. My upstream is <code>9.9.9.9:853</code> and I have wireguard running on that VM so it proxies to one of my VPSes in another country.</p>
+<hr>
+<h2 id="mullvad-linux-client-lan-sharing">Mullvad linux client LAN sharing</h2>
+<p>It does NOT play nice. It does not let you use your own DNS even with lockdown mode off, LAN sharing on, and custom DNS enabled. DNS goes out and it doesn&rsquo;t get it back from adguard because mullvad actually never changes the interfaces DNS to the custom one.
+It only changes it to SEND dns queries, not RECEIVE, so you are effectively left WITHOUT DNS unless you set it manually like so.</p>
+<pre tabindex="0"><code>sudo resolvectl dns eno1 192.168.1.50
+sudo resolvectl domain eno1 &#34;~.&#34;
+</code></pre>
+    </div>
   </div>
-  <hr>
-<p>All posts, newest first, bias included.</p>
-
-  
-  
-    <div class="summary">
-  <div class="summary-date">Aug 5, 2026</div>
-  <h2 class="summary-title"><a href="/posts/caddy/">Hugo &amp; caddy</a></h2>
-  <p class="summary-description">Migrating bullshark369.org from nginx w/ static HTML to caddy with hugo made pages</p>
-</div>
-  
-    <div class="summary">
-  <div class="summary-date">Jul 25, 2026</div>
-  <h2 class="summary-title"><a href="/posts/wireguard/">VPS proxies with wireguard tunnels</a></h2>
-  <p class="summary-description">The most private VPN is your own</p>
-</div>
-  
-    <div class="summary">
-  <div class="summary-date">Jul 24, 2026</div>
-  <h2 class="summary-title"><a href="/posts/monero/">Self hosting monero node</a></h2>
-  <p class="summary-description">Straightforward process with little fluff</p>
-</div>
-  
-    <div class="summary">
-  <div class="summary-date">Jul 21, 2026</div>
-  <h2 class="summary-title"><a href="/posts/benchmark/">OpenRC vs SystemD</a></h2>
-  <p class="summary-description">A likely slightly innacurate benchmark of OpenRC vs SystemD in CPU math operations</p>
-</div>
-  
-    <div class="summary">
-  <div class="summary-date">Jun 28, 2026</div>
-  <h2 class="summary-title"><a href="/posts/adguard/">Adguard home</a></h2>
-  <p class="summary-description">Setting up adguard home, and mostly my issues with LAN sharing on Mullvad</p>
-</div>
-  
-    <div class="summary">
-  <div class="summary-date">Jun 19, 2026</div>
-  <h2 class="summary-title"><a href="/posts/opnsense/">OPNsense</a></h2>
-  <p class="summary-description">Small rant</p>
-</div>
-  
-    <div class="summary">
-  <div class="summary-date">Jun 19, 2026</div>
-  <h2 class="summary-title"><a href="/posts/proxmox/">Proxmox</a></h2>
-  <p class="summary-description">My great experience with proxmox on 2 different servers</p>
-</div>
-  
-    <div class="summary">
-  <div class="summary-date">Feb 1, 2026</div>
-  <h2 class="summary-title"><a href="/posts/linux/">Linux</a></h2>
-  <p class="summary-description">My initial experience with Linux</p>
-</div>
-  
 
     <div class="footer">
   <p class="footer-credit">@bullshark369.org maintained by shark</p>

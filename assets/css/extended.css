@@ -68,6 +68,10 @@
   font-size: 14px;
   color: var(--on-surface-variant);
 }
+.menu-main > ul > li > a {
+  white-space: nowrap;
+}
+
 .content h2,
 .content h3,
 .content h4,

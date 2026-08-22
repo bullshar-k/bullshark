@@ -10,7 +10,7 @@ curl ifconfig.so
 </code></pre><h3 id=nodejs-install>NodeJS install</h3><p>From there I had to install nodeJS from the source repo as the debain trixie 12 apt version of nodeJS is too old.</p><pre tabindex=0><code>curl -fsSL https://deb.nodesource.com/setup_22.x -o /tmp/ns.sh &amp;&amp; bash /tmp/ns.sh
 apt update &amp;&amp; apt install -y nodejs
 node -v
-</code></pre><h3 id=the-lounge-install>The Lounge install</h3><pre tabindex=0><code>curl https://github.com/thelounge/thelounge-deb/releases/download/v4.5.2/thelounge_4.5.2_all.deb
+</code></pre><h3 id=the-lounge-install>The Lounge install</h3><pre tabindex=0><code>wget https://github.com/thelounge/thelounge-deb/releases/download/v4.5.2/thelounge_4.5.2_all.deb
 apt install -y ./thelounge_4.5.2_all.deb 
 systemctl enable --now lounge
 systemctl status lounge

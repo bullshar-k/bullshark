@@ -1,5 +1,304 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="ie=edge"><title>OpenRC vs SystemD - bullshark.win</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel=icon href=https://bullshark.win/favicon.png><link rel=canonical href=https://bullshark.win/posts/benchmark/><link rel=stylesheet href=/css/style.min.1c18def2aed6b057aa439fbec51b1d6f55f2d2d8073fe48390bceb467a226be6.css><link rel=stylesheet href=/assets/css/extended.min.2b1b6b49935b83e767eb16e2d7e2fb6e6f0db844856efc36bc5a4829d2b387ed.css><meta name=description content="A likely slightly innacurate benchmark of OpenRC vs SystemD in CPU math operations"><meta name=keywords content="Nathan Buache,Test Manager,QA,Quality Assurance,Lausanne,Switzerland,Web Testing,Software Testing,QoQa"><meta property="og:title" content="OpenRC vs SystemD - bullshark.win"><meta property="og:type" content="website"><meta property="og:url" content="https://bullshark.win/posts/benchmark/"><meta property="og:site_name" content="bullshark.win"><meta property="og:description" content="A likely slightly innacurate benchmark of OpenRC vs SystemD in CPU math operations"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="OpenRC vs SystemD"><meta name=twitter:description content="A likely slightly innacurate benchmark of OpenRC vs SystemD in CPU math operations"></head><body class='page page-blog-single'><div id=menu-main-mobile class=menu-main-mobile><ul class=menu><li class=menu-item-home><a href=https://bullshark.win/>Home</a></li><li class=menu-item-blog><a href=https://bullshark.win/posts/>Blog</a></li><li class=menu-item-contact><a href=https://bullshark.win/pages/contact/>Contact</a></li><li class="menu-item-friend projects"><a href=https://bullshark.win/pages/frienpro/>Friend Projects</a></li></ul></div><div id=wrapper class=wrapper><div class=header><div class=menu-main><ul><li class=menu-item-home><a href=/><span>Home</span></a></li><li class=menu-item-blog><a href=/posts/><span>Blog</span></a></li><li class=menu-item-contact><a href=/pages/contact/><span>Contact</span></a></li><li class="menu-item-friend projects"><a href=/pages/frienpro/><span>Friend Projects</span></a></li></ul></div><div id=toggle-menu-main-mobile class=hamburger-trigger><button class=hamburger>Menu</button></div></div><div class=blog><div class=intro><h1>OpenRC vs SystemD</h1></div><div class=content><p>Both tests were done separately, not in concurrency, with the same background activity on the host machine. Scores are difference from Arch - Artix. If the number is positive Arch scored higher. Percent diffs are calcualted as follows: 100(|diff|/arch&rsquo;s score)</p><p>Gentoo wiki has an article with the breakdown comparison of these two @<a href=https://wiki.gentoo.org/wiki/Comparison_of_init_systems>Comparison of init systems</a></p><hr><h2 id=environment>Environment</h2><table><thead><tr><th>Ram</th><th>Swap</th><th>Storage</th><th>Filesys</th><th>DE</th><th>Compiler</th><th>Benchmark</th></tr></thead><tbody><tr><td>16GiB</td><td>None</td><td>50GiB NVMe</td><td>ext4</td><td>none, TTY</td><td>GCC 13.3.0</td><td>FOSSbench</td></tr></tbody></table><hr><h2 id=results>Results</h2><table><thead><tr><th>Native integer math</th><th>Wide integer math</th><th>Floating point math</th><th>Prime numbers</th><th>Extended instructions</th><th>Compression</th><th>Encryption</th><th>Physics</th><th>Sorting</th><th>Memory latency</th><th>Memory bandwidth</th></tr></thead><tbody><tr><td>-514.3</td><td>-689.5</td><td>277</td><td>-44.5</td><td>492.2</td><td>2079.9</td><td>213</td><td>78</td><td>224</td><td>-4</td><td>15568.7</td></tr><tr><td>-0.41%</td><td>-0.59%</td><td>1.34%</td><td>-0.35%</td><td>0.19%</td><td>20.66%</td><td>2.4%</td><td>2.53%</td><td>6.94%</td><td>-5.39%</td><td>9.04%</td></tr></tbody></table></div></div><div class=footer><p class=footer-credit>@bullshark.win maintained by shark</p><div class=footer-social><div class=social-link><a href=https://github.com/bullshar-k title=GitHub target=_blank rel=noopener>GitHub</a></div><div class=social-link><a href=https://git.noroutes.net/shark title=Gitea target=_blank rel=noopener>Gitea</a></div><button type=button class="social-link social-copy" data-copy=irc://bullshar_k@irc.ergo.chat title="Copy Ergo.chat to clipboard">
-<span class=social-copy-label>Ergo.chat</span>
-</button>
-<button type=button class="social-link social-copy" data-copy=IRC://bullshar_k@irc.libera.chat title="Copy Libera.chat to clipboard">
-<span class=social-copy-label>Libera.chat</span></button><div class=social-link><a href=mailto:bullsharkgunsemail@pm.me title=Email target=_blank rel=noopener>Email</a></div></div></div><script>(function(){var e=document.querySelectorAll(".social-copy");e.forEach(function(e){e.addEventListener("click",function(){var t,o=e.getAttribute("data-copy"),n=e.querySelector(".social-copy-label, .contact-social-name"),i=n?n.textContent:e.textContent;function s(){n.textContent="Copied!",setTimeout(function(){n.textContent=i},1500)}if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(o).then(s).catch(s);else{t=document.createElement("textarea"),t.value=o,document.body.appendChild(t),t.select();try{document.execCommand("copy")}catch{}document.body.removeChild(t),s()}})})})()</script></div><script type=text/javascript src=/js/bundle.min.5993fcb11c07dea925a3fbd58c03c7f1857197c35fccce3aa963a12c0b3c9960.js></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>OpenRC vs SystemD - bullshark.win</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="https://bullshark.win/favicon.png">
+  <link rel="canonical" href="https://bullshark.win/posts/benchmark/" />
+    
+    
+    <link rel="stylesheet" href="/css/style.min.1c18def2aed6b057aa439fbec51b1d6f55f2d2d8073fe48390bceb467a226be6.css">
+    <link rel="stylesheet" href="/assets/css/extended.min.2b1b6b49935b83e767eb16e2d7e2fb6e6f0db844856efc36bc5a4829d2b387ed.css">
+
+  
+    <meta name="description" content="A likely slightly innacurate benchmark of OpenRC vs SystemD in CPU math operations"/>
+    <meta name="keywords" content="Nathan Buache, Test Manager, QA, Quality Assurance, Lausanne, Switzerland, Web Testing, Software Testing, QoQa"/>
+    <meta property="og:title" content="OpenRC vs SystemD - bullshark.win"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://bullshark.win/posts/benchmark/"/>
+    <meta property="og:site_name" content="bullshark.win"/>
+    
+    <meta property="og:description" content="A likely slightly innacurate benchmark of OpenRC vs SystemD in CPU math operations"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="OpenRC vs SystemD"/>
+    <meta name="twitter:description" content="A likely slightly innacurate benchmark of OpenRC vs SystemD in CPU math operations"/>
+    
+    
+  
+
+  
+
+  
+  
+  
+</head>
+
+
+
+
+<body class='page page-blog-single'>
+  <div id="menu-main-mobile" class="menu-main-mobile">
+    <ul class="menu">
+        
+        
+            
+                <li class="menu-item-home">
+                    <a href="https://bullshark.win/">Home</a>
+                </li>
+            
+        
+            
+                <li class="menu-item-blog">
+                    <a href="https://bullshark.win/posts/">Blog</a>
+                </li>
+            
+        
+            
+                <li class="menu-item-contact">
+                    <a href="https://bullshark.win/pages/contact/">Contact</a>
+                </li>
+            
+        
+            
+                <li class="menu-item-friend projects">
+                    <a href="https://bullshark.win/pages/frienpro/">Friend Projects</a>
+                </li>
+            
+        
+    </ul>
+</div>
+  <div id="wrapper" class="wrapper">
+    <div class='header'>
+  <div class="menu-main">
+    <ul>
+      
+      
+      
+      
+      <li class="menu-item-home ">
+        <a href="/">
+          
+          <span>Home</span>
+        </a>
+      </li>
+      
+      
+      
+      <li class="menu-item-blog ">
+        <a href="/posts/">
+          
+          <span>Blog</span>
+        </a>
+      </li>
+      
+      
+      
+      <li class="menu-item-contact ">
+        <a href="/pages/contact/">
+          
+          <span>Contact</span>
+        </a>
+      </li>
+      
+      
+      
+      <li class="menu-item-friend projects ">
+        <a href="/pages/frienpro/">
+          
+          <span>Friend Projects</span>
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+  <div id="toggle-menu-main-mobile" class="hamburger-trigger">
+    <button class="hamburger">Menu</button>
+  </div>
+</div>
+    
+  <div class="blog">
+    <div class="intro">
+      <h1>OpenRC vs SystemD</h1>
+      
+    </div>
+    <div class="content">
+      <p>Both tests were done separately, not in concurrency, with the same background activity on the host machine. Scores are difference from Arch - Artix. If the number is positive Arch scored higher. Percent diffs are calcualted as follows: 100(|diff|/arch&rsquo;s score)</p>
+<p>Gentoo wiki has an article with the breakdown comparison of these two @<a href="https://wiki.gentoo.org/wiki/Comparison_of_init_systems">Comparison of init systems</a></p>
+<hr>
+<h2 id="environment">Environment</h2>
+<table>
+	<thead>
+			<tr>
+					<th>Ram</th>
+					<th>Swap</th>
+					<th>Storage</th>
+					<th>Filesys</th>
+					<th>DE</th>
+					<th>Compiler</th>
+					<th>Benchmark</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>16GiB</td>
+					<td>None</td>
+					<td>50GiB NVMe</td>
+					<td>ext4</td>
+					<td>none, TTY</td>
+					<td>GCC 13.3.0</td>
+					<td>FOSSbench</td>
+			</tr>
+	</tbody>
+</table>
+<hr>
+<h2 id="results">Results</h2>
+<table>
+	<thead>
+			<tr>
+					<th>Native integer math</th>
+					<th>Wide integer math</th>
+					<th>Floating point math</th>
+					<th>Prime numbers</th>
+					<th>Extended instructions</th>
+					<th>Compression</th>
+					<th>Encryption</th>
+					<th>Physics</th>
+					<th>Sorting</th>
+					<th>Memory latency</th>
+					<th>Memory bandwidth</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>-514.3</td>
+					<td>-689.5</td>
+					<td>277</td>
+					<td>-44.5</td>
+					<td>492.2</td>
+					<td>2079.9</td>
+					<td>213</td>
+					<td>78</td>
+					<td>224</td>
+					<td>-4</td>
+					<td>15568.7</td>
+			</tr>
+			<tr>
+					<td>-0.41%</td>
+					<td>-0.59%</td>
+					<td>1.34%</td>
+					<td>-0.35%</td>
+					<td>0.19%</td>
+					<td>20.66%</td>
+					<td>2.4%</td>
+					<td>2.53%</td>
+					<td>6.94%</td>
+					<td>-5.39%</td>
+					<td>9.04%</td>
+			</tr>
+	</tbody>
+</table>
+
+    </div>
+  </div>
+
+    <div class="footer">
+  <p class="footer-credit">@bullshark.win maintained by shark</p>
+  
+  <div class="footer-social">
+    
+      
+        <div class="social-link">
+          <a href="https://github.com/bullshar-k" title="GitHub" target="_blank" rel="noopener">
+            GitHub
+          </a>
+        </div>
+      
+    
+      
+        <div class="social-link">
+          <a href="https://git.noroutes.net/shark" title="Gitea" target="_blank" rel="noopener">
+            Gitea
+          </a>
+        </div>
+      
+    
+      
+        <button type="button" class="social-link social-copy" data-copy="irc://bullshar_k@irc.ergo.chat" title="Copy Ergo.chat to clipboard">
+          <span class="social-copy-label">Ergo.chat</span>
+        </button>
+      
+    
+      
+        <button type="button" class="social-link social-copy" data-copy="IRC://bullshar_k@irc.libera.chat" title="Copy Libera.chat to clipboard">
+          <span class="social-copy-label">Libera.chat</span>
+        </button>
+      
+    
+      
+        <div class="social-link">
+          <a href="mailto:bullsharkgunsemail@pm.me" title="Email" target="_blank" rel="noopener">
+            Email
+          </a>
+        </div>
+      
+    
+  </div>
+  
+</div>
+
+<script>
+(function () {
+  var btns = document.querySelectorAll('.social-copy');
+  btns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var text = btn.getAttribute('data-copy');
+      var label = btn.querySelector('.social-copy-label, .contact-social-name');
+      var original = label ? label.textContent : btn.textContent;
+
+      function done() {
+        label.textContent = 'Copied!';
+        setTimeout(function () { label.textContent = original; }, 1500);
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(done);
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(ta);
+        done();
+      }
+    });
+  });
+})();
+</script>
+
+  </div>
+
+  
+
+  
+    <script type="text/javascript" src="/js/bundle.min.5993fcb11c07dea925a3fbd58c03c7f1857197c35fccce3aa963a12c0b3c9960.js"></script>
+  
+
+  
+  
+
+  
+  
+  
+    
+  
+
+  
+
+  
+
+</body>
+</html>

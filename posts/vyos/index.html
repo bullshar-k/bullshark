@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>vyOS - bullshark.win</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="https://bullshark.win/favicon.png">
+  <link rel="canonical" href="https://bullshark.win/posts/vyos/" />
+    
+    
+    <link rel="stylesheet" href="/css/style.min.1c18def2aed6b057aa439fbec51b1d6f55f2d2d8073fe48390bceb467a226be6.css">
+    <link rel="stylesheet" href="/assets/css/extended.min.2b1b6b49935b83e767eb16e2d7e2fb6e6f0db844856efc36bc5a4829d2b387ed.css">
+
+  
+    <meta name="description" content="Switching from OPNsense to vyOS"/>
+    <meta name="keywords" content="Nathan Buache, Test Manager, QA, Quality Assurance, Lausanne, Switzerland, Web Testing, Software Testing, QoQa"/>
+    <meta property="og:title" content="vyOS - bullshark.win"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://bullshark.win/posts/vyos/"/>
+    <meta property="og:site_name" content="bullshark.win"/>
+    
+    <meta property="og:description" content="Switching from OPNsense to vyOS"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="vyOS"/>
+    <meta name="twitter:description" content="Switching from OPNsense to vyOS"/>
+    
+    
+  
+
+  
+
+  
+  
+  
+</head>
+
+
+
+
+<body class='page page-blog-single'>
+  <div id="menu-main-mobile" class="menu-main-mobile">
+    <ul class="menu">
+        
+        
+            
+                <li class="menu-item-home">
+                    <a href="https://bullshark.win/">Home</a>
+                </li>
+            
+        
+            
+                <li class="menu-item-blog">
+                    <a href="https://bullshark.win/posts/">Blog</a>
+                </li>
+            
+        
+            
+                <li class="menu-item-contact">
+                    <a href="https://bullshark.win/pages/contact/">Contact</a>
+                </li>
+            
+        
+            
+                <li class="menu-item-friend projects">
+                    <a href="https://bullshark.win/pages/frienpro/">Friend Projects</a>
+                </li>
+            
+        
+    </ul>
+</div>
+  <div id="wrapper" class="wrapper">
+    <div class='header'>
+  <div class="menu-main">
+    <ul>
+      
+      
+      
+      
+      <li class="menu-item-home ">
+        <a href="/">
+          
+          <span>Home</span>
+        </a>
+      </li>
+      
+      
+      
+      <li class="menu-item-blog ">
+        <a href="/posts/">
+          
+          <span>Blog</span>
+        </a>
+      </li>
+      
+      
+      
+      <li class="menu-item-contact ">
+        <a href="/pages/contact/">
+          
+          <span>Contact</span>
+        </a>
+      </li>
+      
+      
+      
+      <li class="menu-item-friend projects ">
+        <a href="/pages/frienpro/">
+          
+          <span>Friend Projects</span>
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+  <div id="toggle-menu-main-mobile" class="hamburger-trigger">
+    <button class="hamburger">Menu</button>
+  </div>
+</div>
+    
+  <div class="blog">
+    <div class="intro">
+      <h1>vyOS</h1>
+      
+    </div>
+    <div class="content">
+      <h1 id="intro">Intro</h1>
+<p>I really do love vyOS. It gives you a real router feel unlike PFsense or OPNsense, the CLI workflow efficiency, and the linux networking all in one.</p>
+<h1 id="setup">Setup</h1>
+<p>Running in a proxmox VM, vyOS ver 2026.03 generic rolling. I did have to make the VM BIOS for it to boot but the installation was braindead easy. The default user and password is <code>vyos</code>. Then you run <code>install image</code> and [y/n] your way through it, reboot, and now vyOS is on your partition. I did have an obstacle however. See my Adguard broke, totally seperate issue, but I thought it was because of the router. So I spent a minute wondering how, even with :53 forwarding rules, the router was stopping a DNS on the same LAN from resolving when the PC and the DNS server could ping the internet. Then I just decided to go with the trusty snapshot rollback and
+everything worked swellingly.</p>
+<h1 id="comments">Comments</h1>
+<p>Some of the docs are outdated. One example being for this command the word &lsquo;option&rsquo; isn&rsquo;t included. Though if you know how to use the ? on Cisco IOS it becomes a 2 second obstacle.</p>
+<pre tabindex="0"><code>set service dhcp-server shared-network-name LAN subnet 192.168.1.0/24 option default-router &#39;192.168.1.1&#39;
+</code></pre><p>Other than that it kind of likes to flip out, once I set up SSH and was able to use it through my PC&rsquo;s terminal instead of the proxmox web VNC it was a little better, but tab completing incomplete commands can sometimes paste the outpute into your line and it gets all freaky. CTRL + C usually fixes it well enough though. Other than that im overall very happy, OPNsense and PFsense are both built on FreeBSD which is sorta more secure but has its own bout of problems. Its nice to have actual CLI router like networking with linux.</p>
+<p>I sort of went to set up DHCP but ended up not because I don&rsquo;t have a WAP and basically never connect new devices to my network, so thats why DHCP is set to disabled but has some configurations.</p>
+<h1 id="configuration-commands">Configuration commands</h1>
+<pre tabindex="0"><code>set firewall ipv4 forward filter default-action &#39;drop&#39;
+set firewall ipv4 forward filter rule 10 action &#39;accept&#39;
+set firewall ipv4 forward filter rule 10 state &#39;established&#39;
+set firewall ipv4 forward filter rule 10 state &#39;related&#39;
+set firewall ipv4 forward filter rule 20 action &#39;accept&#39;
+set firewall ipv4 forward filter rule 20 source address &#39;192.168.1.0/24&#39;
+set firewall ipv4 forward filter rule 30 action &#39;drop&#39;
+set firewall ipv4 forward filter rule 30 state &#39;invalid&#39;
+set firewall ipv4 input filter default-action &#39;accept&#39;
+set firewall ipv4 input filter rule 5 action &#39;accept&#39;
+set firewall ipv4 input filter rule 5 destination port &#39;68&#39;
+set firewall ipv4 input filter rule 5 protocol &#39;tcp&#39;
+set firewall ipv4 input filter rule 5 source port &#39;67&#39;
+set firewall ipv4 input filter rule 10 action &#39;accept&#39;
+set firewall ipv4 input filter rule 10 state &#39;established&#39;
+set firewall ipv4 input filter rule 10 state &#39;related&#39;
+set firewall ipv4 input filter rule 15 action &#39;accept&#39;
+set firewall ipv4 input filter rule 15 destination port &#39;53&#39;
+set firewall ipv4 input filter rule 15 protocol &#39;udp&#39;
+set firewall ipv4 input filter rule 15 source address &#39;192.168.1.0/24&#39;
+set firewall ipv4 input filter rule 20 action &#39;accept&#39;
+set firewall ipv4 input filter rule 20 destination port &#39;22&#39;
+set firewall ipv4 input filter rule 20 protocol &#39;tcp&#39;
+set firewall ipv4 input filter rule 20 source address &#39;192.168.1.25&#39;
+set interfaces ethernet eth0 address &#39;192.168.1.1/24&#39;
+set interfaces ethernet eth0 description &#39;LAN&#39;
+set interfaces ethernet eth0 hw-id &#39;ff:ff:ff:ff:ff:ff&#39;
+set interfaces ethernet eth0 offload gro
+set interfaces ethernet eth0 offload gso
+set interfaces ethernet eth0 offload sg
+set interfaces ethernet eth0 offload tso
+set interfaces ethernet eth2 address &#39;dhcp&#39;
+set interfaces ethernet eth2 description &#39;WAN&#39;
+set interfaces ethernet eth2 hw-id &#39;ff:ff:ff:ff:ff:ff&#39;
+set interfaces loopback lo
+set nat source rule 100 outbound-interface name &#39;eth2&#39;
+set nat source rule 100 source address &#39;192.168.1.0/24&#39;
+set nat source rule 100 translation address &#39;masquerade&#39;
+set service dhcp-server disable
+set service dhcp-server shared-network-name LAN subnet 192.168.1.0/24 option default-router &#39;192.168.1.1&#39;
+set service dhcp-server shared-network-name LAN subnet 192.168.1.0/24 option name-server &#39;192.168.1.1&#39;
+set service dhcp-server shared-network-name LAN subnet 192.168.1.0/24 range 0 start &#39;192.168.1.100&#39;
+set service dhcp-server shared-network-name LAN subnet 192.168.1.0/24 range 0 stop &#39;192.168.1.200&#39;
+set service dns forwarding allow-from &#39;192.168.1.0/24&#39;
+set service dns forwarding listen-address &#39;192.168.1.1&#39;
+set service ntp allow-client address &#39;127.0.0.0/8&#39;
+set service ntp allow-client address &#39;169.254.0.0/16&#39;
+set service ntp allow-client address &#39;10.0.0.0/8&#39;
+set service ntp allow-client address &#39;172.16.0.0/12&#39;
+set service ntp allow-client address &#39;192.168.0.0/16&#39;
+set service ntp allow-client address &#39;::1/128&#39;
+set service ntp allow-client address &#39;fe80::/10&#39;
+set service ntp allow-client address &#39;fc00::/7&#39;
+set service ntp server time1.vyos.net
+set service ntp server time2.vyos.net
+set service ntp server time3.vyos.net
+set service ssh listen-address &#39;192.168.1.25&#39;
+set service ssh listen-address &#39;192.168.1.1&#39;
+set service ssh port &#39;22&#39;
+set system config-management commit-revisions &#39;100&#39;
+set system console device ttyS0 speed &#39;115200&#39;
+set system host-name &#39;vyos&#39;
+set system login user vyos authentication encrypted-password &#39;what are you looking at bud.&#39;
+set system login user vyos authentication plaintext-password &#39;&#39;
+set system option reboot-on-upgrade-failure &#39;5&#39;
+set system syslog local facility all level &#39;info&#39;
+set system syslog local facility local7 level &#39;debug&#39;
+</code></pre><h1 id="configuration">Configuration</h1>
+<pre tabindex="0"><code>firewall {
+    ipv4 {
+        forward {
+            filter {
+                default-action drop
+                rule 10 {
+                    action accept
+                    state established
+                    state related
+                }
+                rule 20 {
+                    action accept
+                    source {
+                        address 192.168.1.0/24
+                    }
+                }
+                rule 30 {
+                    action drop
+                    state invalid
+                }
+            }
+        }
+        input {
+            filter {
+                default-action accept
+                rule 5 {
+                    action accept
+                    destination {
+                        port 68
+                    }
+                    protocol tcp
+                    source {
+                        port 67
+                    }
+                }
+                rule 10 {
+                    action accept
+                    state established
+                    state related
+                }
+                rule 15 {
+                    action accept
+                    destination {
+                        port 53
+                    }
+                    protocol udp
+                    source {
+                        address 192.168.1.0/24
+                    }
+                }
+                rule 20 {
+                    action accept
+                    destination {
+                        port 22
+                    }
+                    protocol tcp
+                    source {
+                        address 192.168.1.25
+                    }
+                }
+            }
+        }
+    }
+}
+interfaces {
+    ethernet eth0 {
+        address 192.168.1.1/24
+        description LAN
+        hw-id ff:ff:ff:ff:ff:ff
+        offload {
+            gro
+            gso
+            sg
+            tso
+        }
+</code></pre>
+    </div>
+  </div>
+
+    <div class="footer">
+  <p class="footer-credit">@bullshark.win maintained by shark</p>
+  
+  <div class="footer-social">
+    
+      
+        <div class="social-link">
+          <a href="https://github.com/bullshar-k" title="GitHub" target="_blank" rel="noopener">
+            GitHub
+          </a>
+        </div>
+      
+    
+      
+        <div class="social-link">
+          <a href="https://git.noroutes.net/shark" title="Gitea" target="_blank" rel="noopener">
+            Gitea
+          </a>
+        </div>
+      
+    
+      
+        <button type="button" class="social-link social-copy" data-copy="irc://bullshar_k@irc.ergo.chat" title="Copy Ergo.chat to clipboard">
+          <span class="social-copy-label">Ergo.chat</span>
+        </button>
+      
+    
+      
+        <button type="button" class="social-link social-copy" data-copy="IRC://bullshar_k@irc.libera.chat" title="Copy Libera.chat to clipboard">
+          <span class="social-copy-label">Libera.chat</span>
+        </button>
+      
+    
+      
+        <div class="social-link">
+          <a href="mailto:bullsharkgunsemail@pm.me" title="Email" target="_blank" rel="noopener">
+            Email
+          </a>
+        </div>
+      
+    
+  </div>
+  
+</div>
+
+<script>
+(function () {
+  var btns = document.querySelectorAll('.social-copy');
+  btns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var text = btn.getAttribute('data-copy');
+      var label = btn.querySelector('.social-copy-label, .contact-social-name');
+      var original = label ? label.textContent : btn.textContent;
+
+      function done() {
+        label.textContent = 'Copied!';
+        setTimeout(function () { label.textContent = original; }, 1500);
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(done);
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(ta);
+        done();
+      }
+    });
+  });
+})();
+</script>
+
+  </div>
+
+  
+
+  
+    <script type="text/javascript" src="/js/bundle.min.5993fcb11c07dea925a3fbd58c03c7f1857197c35fccce3aa963a12c0b3c9960.js"></script>
+  
+
+  
+  
+
+  
+  
+  
+    
+  
+
+  
+
+  
+
+</body>
+</html>

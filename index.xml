@@ -10,9 +10,16 @@
 		
 		
 		
-			<lastBuildDate>Fri, 02 Oct 2026 00:00:00 +0000</lastBuildDate>
+			<lastBuildDate>Sat, 03 Oct 2026 00:00:00 +0000</lastBuildDate>
 		
 			<atom:link href="https://bullshark.win/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>matrix.bullshark.win coming soon?</title>
+				<link>https://bullshark.win/posts/matrix/</link>
+				<pubDate>Sat, 03 Oct 2026 00:00:00 +0000</pubDate>
+				<guid>https://bullshark.win/posts/matrix/</guid>
+				<description>&lt;h1 id=&#34;discord&#34;&gt;Discord&lt;/h1&gt;&#xA;&lt;p&gt;Discord has been getting worse. With persona, age verification, AI screening of images, and my distrust of the dev and operations team with those techonlogies, I am looking to 100% move off discord.&#xA;I enjoy gaming with my friends, a lot of times we screenshare, sometimes we use our face cams, so that is a requirement for an alternative to me hence IRC not being the alternative.&lt;/p&gt;&#xA;&lt;h1 id=&#34;matrix&#34;&gt;Matrix&lt;/h1&gt;&#xA;&lt;p&gt;Matrix is good but most home servers are weird, I went onto a website that recommended home servers and the #2 server was a lolicon themed one so.. Pass on that. Matrix.org has very low data limits, and so on, they all have problems.&#xA;I do have a request in for a manual approval one called tchncs.de currently, which, according to my friend fits my requirements. So if that works out I wont be making a matrix server myself, however, I&amp;rsquo;d really like a matrix server that supports FIDO (sorta optional), video, screensharing,&#xA;no shady or creepy community, no shady background, devs, or mods, and low or no KYC.&lt;/p&gt;</description>
+			</item>
 			<item>
 				<title>vyOS</title>
 				<link>https://bullshark.win/posts/vyos/</link>
@@ -74,7 +81,7 @@
 				<link>https://bullshark.win/posts/monero/</link>
 				<pubDate>Fri, 24 Jul 2026 00:00:00 +0000</pubDate>
 				<guid>https://bullshark.win/posts/monero/</guid>
-				<description>&lt;hr&gt;&#xA;&lt;h2 id=&#34;on-server&#34;&gt;On server&lt;/h2&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apt update &amp;amp;&amp;amp; apt update&#xA;apt install monero&#xA;monerod --datadir ~/.bitmoner --prune-blockchain&#xA;// ^ THIS WILL TAKE 2-6 DAYS DEPENDING ON INTERNET SPEED&#xA;monerod --rpc-bind-ip=0.0.0.0 --rpc-bind-port=18081 --confirm-external-bind&#xA;// ^ ONLY DO THIS IF USING LAN ONLY&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Took long, super easy though.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;on-client&#34;&gt;On client&lt;/h2&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo pacman -S monero&#xA;// then add to bashRC&#xA;alias wallert=&amp;#34;monero-wallet-cli --wallet /wallet/address/path --daemon-address 192.168.1.67:18081 --trusted-daemon&amp;#34;&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This way when I type wallert it opens my wallet, and I don&amp;rsquo;t need a lengthy command.&lt;/p&gt;</description>
+				<description>&lt;hr&gt;&#xA;&lt;h2 id=&#34;on-server&#34;&gt;On server&lt;/h2&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apt update &amp;amp;&amp;amp; apt upgrade&#xA;apt install monero&#xA;monerod --datadir ~/.bitmoner --prune-blockchain&#xA;// ^ THIS WILL TAKE 2-6 DAYS DEPENDING ON INTERNET SPEED&#xA;monerod --rpc-bind-ip=0.0.0.0 --rpc-bind-port=18081 --confirm-external-bind&#xA;// ^ ONLY DO THIS IF USING LAN ONLY&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Took long, super easy though.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;on-client&#34;&gt;On client&lt;/h2&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo pacman -S monero&#xA;// then add to bashRC&#xA;alias wallert=&amp;#34;monero-wallet-cli --wallet /wallet/address/path --daemon-address 192.168.1.67:18081 --trusted-daemon&amp;#34;&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This way when I type wallert it opens my wallet, and I don&amp;rsquo;t need a lengthy command.&lt;/p&gt;</description>
 			</item>
 			<item>
 				<title>OpenRC vs SystemD</title>

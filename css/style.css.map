@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "style.css",
-	"sourceRoot": "/home/shark/projects/webdev/bullorg",
+	"sourceRoot": "/home/shark/hugo",
 	"sources": [
 		"themes/blog/assets/scss/style.scss",
 		"themes/blog/assets/scss/_normalize.scss",

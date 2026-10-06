@@ -4,27 +4,27 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Slow VPS due to bad luck w BGP - bullshark.win</title>
+  <title>helix terminal based text editor - bullshark.win</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="https://bullshark.win/favicon.png">
-  <link rel="canonical" href="https://bullshark.win/posts/bgp/" />
+  <link rel="canonical" href="https://bullshark.win/posts/helix/" />
     
     
     <link rel="stylesheet" href="/css/style.min.1c18def2aed6b057aa439fbec51b1d6f55f2d2d8073fe48390bceb467a226be6.css">
     <link rel="stylesheet" href="/assets/css/extended.min.2b1b6b49935b83e767eb16e2d7e2fb6e6f0db844856efc36bc5a4829d2b387ed.css">
 
   
-    <meta name="description" content="I bought a VPS to use as a proxy and its speeds were far slower than expected or seen on the YABS."/>
+    <meta name="description" content="I have switched off of VScodium finally"/>
     <meta name="keywords" content="Nathan Buache, Test Manager, QA, Quality Assurance, Lausanne, Switzerland, Web Testing, Software Testing, QoQa"/>
-    <meta property="og:title" content="Slow VPS due to bad luck w BGP - bullshark.win"/>
+    <meta property="og:title" content="helix terminal based text editor - bullshark.win"/>
     <meta property="og:type" content="website"/>
-    <meta property="og:url" content="https://bullshark.win/posts/bgp/"/>
+    <meta property="og:url" content="https://bullshark.win/posts/helix/"/>
     <meta property="og:site_name" content="bullshark.win"/>
     
-    <meta property="og:description" content="I bought a VPS to use as a proxy and its speeds were far slower than expected or seen on the YABS."/>
+    <meta property="og:description" content="I have switched off of VScodium finally"/>
     <meta name="twitter:card" content="summary_large_image"/>
-    <meta name="twitter:title" content="Slow VPS due to bad luck w BGP"/>
-    <meta name="twitter:description" content="I bought a VPS to use as a proxy and its speeds were far slower than expected or seen on the YABS."/>
+    <meta name="twitter:title" content="helix terminal based text editor"/>
+    <meta name="twitter:description" content="I have switched off of VScodium finally"/>
     
     
   
@@ -121,48 +121,22 @@
     
   <div class="blog">
     <div class="intro">
-      <h1>Slow VPS due to bad luck w BGP</h1>
+      <h1>helix terminal based text editor</h1>
       
     </div>
     <div class="content">
-      <h3 id="the-vps">The VPS</h3>
-<p>The VPS itself was a 10GB/s VPS with enough hardware to handle most of that throughput on a wireguard tunnel. The iperf3 test I ran outisde of the tunnel would show ~70-100mb of download. The YABS from VPS to multiple clearnet WAN test points would show correct speeds. My conclusion is it was probably bad luck with the BGP routing, one of the hops is probably just incredibly slow or dated equipment. Take this as a lesson that if you are going to subscribe to remote networking equipment to get 1 month first and test its performance against advertised or promised performance, then purchase the rest of the subscription time.</p>
-<h3 id="data">Data</h3>
-<p>Iperf3 without the tunnel averages to 14.6 Mbits/sec. As for the yabs;</p>
-<table>
-	<thead>
-			<tr>
-					<th>Location</th>
-					<th>Speed (Gbits/sec)</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>UK</td>
-					<td>1.56</td>
-			</tr>
-			<tr>
-					<td>Amsterdam</td>
-					<td>5.21</td>
-			</tr>
-			<tr>
-					<td>Tashkent, UZ</td>
-					<td>2.62</td>
-			</tr>
-			<tr>
-					<td>Singapore</td>
-					<td>1.67</td>
-			</tr>
-			<tr>
-					<td>Los Angeles</td>
-					<td>6.92</td>
-			</tr>
-			<tr>
-					<td>NYC NY</td>
-					<td>7.44</td>
-			</tr>
-	</tbody>
-</table>
+      <h2 id="vscodium">VScodium</h2>
+<p>Great out of the box IDE if you don&rsquo;t want to do any configuration. However, very heavy, electron, I won&rsquo;t use it everywhere as sometimes it&rsquo;s way easier to use a terminal text editor. So I wanted to switch.</p>
+<h2 id="micro">Micro</h2>
+<p>Micro was my terminal text editor of choice previous to helix. Really good for making simple changes quickly with no configuration. Also has plugins if you want to extends its usage but I didn&rsquo;t do any of that.</p>
+<h2 id="helix">Helix</h2>
+<p>Helix is very vim style just simpler to configure. I&rsquo;d used vim for quite a while so it was easy to pick up. Though, I think most of this community would kill me for my keybinds, I don&rsquo;t care. My helix keybinds
+are in my dotfiles on github. I&rsquo;m really liking it so far, color scheming was easy to set up, has the ability to have all the keybinds you want mapped however you want, and doesn&rsquo;t require learning a whole language
+to configure.</p>
+<p>I&rsquo;m sure my current keybinds will change before they settle, but I&rsquo;m very much a 20% effort for 80% of results person when it comes to things like this. Some people spend hours on writig lisp for their emacs and get
+into a sunk cost fallacy situation. VScodium worked well for me but it is missing some keybinds, for example gw to go to word is very helpful to me. So I get more utility out of this but also I can use it everywhere,
+unlike with an IDE where you have to open the file in it interrupting your terminal workflow. Also this is far more keyboard based, I&rsquo;ve been using my thinkpad a lot more lately and it&rsquo;s nice to increase the keyboard
+usage in my workflow considering trackpads are suboptimal.</p>
 
     </div>
   </div>

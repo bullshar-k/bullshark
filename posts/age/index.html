@@ -126,12 +126,12 @@
     </div>
     <div class="content">
       <p>From the wireguard tunneling, to matrix, to IRC, and now manually encrypting and generating keys with age, I keep visiting cryptography for different reasons and loving it more every time I do.
-I think it&rsquo;s the perfect specialization in between network engineering, my forte, and software engineering, a secondary pation of mine which I&rsquo;m not quite as good at.</p>
+I think it&rsquo;s the perfect specialization in between network engineering, my forte, and software engineering, a secondary passion of mine which I&rsquo;m not quite as good at.</p>
 <h3 id="keygen">Keygen</h3>
 <p>Creates post quantum public and private key in a file, also echoing the public key to the terminal:</p>
 <pre tabindex="0"><code>age -pq -o key.txt 
 </code></pre><h3 id="private-key-file-encryption-decryption">Private key file encryption decryption</h3>
-<p>If you are going to be storing this key as a &ldquo;just in case&rdquo; so someone can send something to you with it if need be I would recommend encrypting the file with the private key.</p>
+<p>If you are going to be storing this key as a &ldquo;just in case&rdquo; so someone can send something to you with it if need be I would recommend encrypting the file with the private key using a password.</p>
 <p>To encrypt private key file with password:</p>
 <pre tabindex="0"><code>age -p key.txt &gt; key.txt.age
 </code></pre><p>To decrypt private key file with passwsord:</p>
@@ -139,16 +139,28 @@ I think it&rsquo;s the perfect specialization in between network engineering, my
 </code></pre><h3 id="message-encryption-decrpytion">Message encryption decrpytion</h3>
 <p>Encrypt using someones pubkey to send to them:</p>
 <pre tabindex="0"><code>age -r age1..... -o message.txt.age message.txt
-</code></pre><p>age1&hellip;.. is they public key
-message.txt.age is the desired encrypted output file name
-message.txt is the file you wish to encrypt</p>
+</code></pre><ul>
+<li>
+<p>age1&hellip;.. is the public key</p>
+</li>
+<li>
+<p>message.txt.age is the desired encrypted output file name</p>
+</li>
+<li>
+<p>message.txt is the file you wish to encrypt</p>
+</li>
+</ul>
 <p>To decrypt a recieved file echoing it into the terminal:</p>
 <pre tabindex="0"><code>age -d -i key.txt encrypted_message.txt
-</code></pre><p>key.txt will be the generated file with pub and private key
-encrypted_message.txt is the encrypted file sent to you</p>
+</code></pre><ul>
+<li>key.txt will be the generated file with pub and private key</li>
+<li>encrypted_message.txt is the encrypted file sent to you</li>
+</ul>
 <p>To decrypt a recieved file into file:</p>
 <pre tabindex="0"><code>age -d -i key.txt encrypted_message.txt &gt; decrypted_message.txt
-</code></pre><p>decrypted_message.txt will have the outpute of decrypting encrypted_message.txt with key.txt</p>
+</code></pre><ul>
+<li>decrypted_message.txt will have the outpute of decrypting encrypted_message.txt with key.txt</li>
+</ul>
 
     </div>
   </div>

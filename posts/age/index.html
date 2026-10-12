@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Manual keygen, encryption, and decryption with age - bullshark.win</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="https://bullshark.win/favicon.png">
+  <link rel="canonical" href="https://bullshark.win/posts/age/" />
+    
+    
+    <link rel="stylesheet" href="/css/style.min.1c18def2aed6b057aa439fbec51b1d6f55f2d2d8073fe48390bceb467a226be6.css">
+    <link rel="stylesheet" href="/assets/css/extended.min.2b1b6b49935b83e767eb16e2d7e2fb6e6f0db844856efc36bc5a4829d2b387ed.css">
+
+  
+    <meta name="description" content="Short command oriented information I learned as I become more interested in cryptography"/>
+    <meta name="keywords" content="Nathan Buache, Test Manager, QA, Quality Assurance, Lausanne, Switzerland, Web Testing, Software Testing, QoQa"/>
+    <meta property="og:title" content="Manual keygen, encryption, and decryption with age - bullshark.win"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://bullshark.win/posts/age/"/>
+    <meta property="og:site_name" content="bullshark.win"/>
+    
+    <meta property="og:description" content="Short command oriented information I learned as I become more interested in cryptography"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Manual keygen, encryption, and decryption with age"/>
+    <meta name="twitter:description" content="Short command oriented information I learned as I become more interested in cryptography"/>
+    
+    
+  
+
+  
+
+  
+  
+  
+</head>
+
+
+
+
+<body class='page page-blog-single'>
+  <div id="menu-main-mobile" class="menu-main-mobile">
+    <ul class="menu">
+        
+        
+            
+                <li class="menu-item-home">
+                    <a href="https://bullshark.win/">Home</a>
+                </li>
+            
+        
+            
+                <li class="menu-item-blog">
+                    <a href="https://bullshark.win/posts/">Blog</a>
+                </li>
+            
+        
+            
+                <li class="menu-item-contact">
+                    <a href="https://bullshark.win/pages/contact/">Contact</a>
+                </li>
+            
+        
+            
+                <li class="menu-item-friend projects">
+                    <a href="https://bullshark.win/pages/frienpro/">Friend Projects</a>
+                </li>
+            
+        
+    </ul>
+</div>
+  <div id="wrapper" class="wrapper">
+    <div class='header'>
+  <div class="menu-main">
+    <ul>
+      
+      
+      
+      
+      <li class="menu-item-home ">
+        <a href="/">
+          
+          <span>Home</span>
+        </a>
+      </li>
+      
+      
+      
+      <li class="menu-item-blog ">
+        <a href="/posts/">
+          
+          <span>Blog</span>
+        </a>
+      </li>
+      
+      
+      
+      <li class="menu-item-contact ">
+        <a href="/pages/contact/">
+          
+          <span>Contact</span>
+        </a>
+      </li>
+      
+      
+      
+      <li class="menu-item-friend projects ">
+        <a href="/pages/frienpro/">
+          
+          <span>Friend Projects</span>
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+  <div id="toggle-menu-main-mobile" class="hamburger-trigger">
+    <button class="hamburger">Menu</button>
+  </div>
+</div>
+    
+  <div class="blog">
+    <div class="intro">
+      <h1>Manual keygen, encryption, and decryption with age</h1>
+      
+    </div>
+    <div class="content">
+      <p>From the wireguard tunneling, to matrix, to IRC, and now manually encrypting and generating keys with age, I keep visiting cryptography for different reasons and loving it more every time I do.
+I think it&rsquo;s the perfect specialization in between network engineering, my forte, and software engineering, a secondary pation of mine which I&rsquo;m not quite as good at.</p>
+<h3 id="keygen">Keygen</h3>
+<p>Creates post quantum public and private key in a file, also echoing the public key to the terminal:</p>
+<pre tabindex="0"><code>age -pq -o key.txt 
+</code></pre><h3 id="private-key-file-encryption-decryption">Private key file encryption decryption</h3>
+<p>If you are going to be storing this key as a &ldquo;just in case&rdquo; so someone can send something to you with it if need be I would recommend encrypting the file with the private key.</p>
+<p>To encrypt private key file with password:</p>
+<pre tabindex="0"><code>age -p key.txt &gt; key.txt.age
+</code></pre><p>To decrypt private key file with passwsord:</p>
+<pre tabindex="0"><code>age -d key.txt.age &gt; key.txt
+</code></pre><h3 id="message-encryption-decrpytion">Message encryption decrpytion</h3>
+<p>Encrypt using someones pubkey to send to them:</p>
+<pre tabindex="0"><code>age -r age1..... -o message.txt.age message.txt
+</code></pre><p>age1&hellip;.. is they public key
+message.txt.age is the desired encrypted output file name
+message.txt is the file you wish to encrypt</p>
+<p>To decrypt a recieved file echoing it into the terminal:</p>
+<pre tabindex="0"><code>age -d -i key.txt encrypted_message.txt
+</code></pre><p>key.txt will be the generated file with pub and private key
+encrypted_message.txt is the encrypted file sent to you</p>
+<p>To decrypt a recieved file into file:</p>
+<pre tabindex="0"><code>age -d -i key.txt encrypted_message.txt &gt; decrypted_message.txt
+</code></pre><p>decrypted_message.txt will have the outpute of decrypting encrypted_message.txt with key.txt</p>
+
+    </div>
+  </div>
+
+    <div class="footer">
+  <p class="footer-credit">@bullshark.win maintained by shark</p>
+  
+  <div class="footer-social">
+    
+      
+        <button type="button" class="social-link social-copy" data-copy="age1pq12gjy3x6trcnwcs5zxydvhkd63pe6esf62ppmvet9tyqly5aua9q35sqfz6kq28scajj7hgfd5nkp5lpgvlrvqclqwedjkeppxzextuz9pxpsgmum2c6xdeusggz93yuk0pcc5a7rdp0ksdnrrgpq9twqw3ktzu4scc2xpxz96c3rrnm8z244w8rlkggs4zsftxjstvsv0urj25dzyyl8peg9eyvfslyugz4qn8a6zjcpqgkvwu2r83rj47kherq3u6ru722w056v3w39wgnr2m0ttdpjq4ppuzxfq502dnjz2tyk2fy78efhc09vnz3ysuw75rrzd3kf855y7yn4n9jpp96xp3nelq8nspvdt7dsyrjh2t52f33pdskcqeadaga9e7cmg7mtf2t06w3pez2ratsk0wxkp05fpj7t288wjvu0h6v257lgqsq50wgayysysverpgqclgy9wvfr23kxkz7jggctzj3jxthvx0g98wwp73f5s5efck4t7fysc28u5ncyf2mww5ngeqn5k5vev4mag2gmqtycftplnyqxxlg3fxw9w0xdpqqfug9j00ph370g5jyf80c3eqe2ufuucgzsrr8cftlz5p6a9gekgqgyk2985ty54vh6xzllewp773e4j0u872j62cw2ypnkl333p9urhrdfcvx5yp76qaj72aaa9eu7wf9g5e6xcd8knvrlgaz8d5t0774hs0340h7jktpzuk047g43veeq806yzcde88vmpqv4yyqwk2gxdevskqpc8sr66sv3dnqpayu3lemg8d3kyjt56w0fnfq0wpauvneh2ldfsmmysukj6z9uzsaku6yuwxsq2pdp92kmgw4j4r3tfz25sx2m2dtfxhq2v66me0sgnj95253k4xnxulxtldev3ejkcav32m08rpfc5fjxkwgkfvw2d3huwa2lkjvygk7k555ft5e4w4htc6ldjsae9yksjwzadz2zyt4uj28jv94kkatteyfzy2wp8grnpgaqe3kydjgpz9f2ka2hhcmxk54ngnf2ffdp9248sjrks4wtd7cnnfe6xvnet9m03rwqqzmv2vktyj0p8p66s9zl3mnv0hkhtktqtwhr5jh0qqp7sw9v60cq52jn5qq4gszn45pnp552lu8z02kqefn72xxqtlp2qxnh0mekxcgdvpd06av6rs2g6ydxk6vyd09dd2g969wt5fsm2nnuxt9gcd8nk3s9zg8v9evnttz2k3ntf6hrceg93gpz29330vzqh7380mkevcgew9wvr96e3xrzcmw9qxp2venszshpt2q0u5dymv24fjrhz829mfc229tynjgmyut9zcx0ez06txj96uxxzrqnrcjn2jeznqpsuenplfuvwzu8msfetzkvxp44fdekxp3eatjjplqhvalkep5su0yrx2s5vxmnydhssj9n9rl60wj8redpntae8mufj4x69t4xwfrveexpw8nuhh4tze3pxea9yjlcc9d8weenyhmv2k4gyw5vasrlnxfav8cz7hlcvu03vlxd90ycvyw0pfj2t8520shgfwxaxy0g7qt7mdgnsj79pn7ph2dkhwkkpkepnhwg7zhvzgncfswgnsd3ztysahrus3qgzlucgwu34qcjrerqfw9fv74tq8zzpxvw9dlcgqg9rcwqrurc3g7vp8ghtj2ehpcg9fgjshn42yzkx8ayfxsr0ryj4kankxvewjjldsey38pwzfq8l87rn7fmj6m2we55gg2yn2f43fgypw8r93k20qc903pxgde3vd4eqtejq7gfsuc5w8qqddq7mqgkvd0c00aqzzk50xzc3ky5cnzgd8du565ajcxyskvuvrrnnp35z3h3qvkq3d3lmp7mkwrjutnavpvmr9xn8373q0p9hx7nygaedpecuhzazwhv7uhcdnzercqd53y2" title="Copy Post quantum age key to clipboard">
+          <span class="social-copy-label">Post quantum age key</span>
+        </button>
+      
+    
+      
+        <div class="social-link">
+          <a href="https://github.com/bullshar-k" title="GitHub" target="_blank" rel="noopener">
+            GitHub
+          </a>
+        </div>
+      
+    
+      
+        <div class="social-link">
+          <a href="https://git.noroutes.net/shark" title="Gitea" target="_blank" rel="noopener">
+            Gitea
+          </a>
+        </div>
+      
+    
+      
+        <button type="button" class="social-link social-copy" data-copy="irc://bullshar_k@irc.ergo.chat" title="Copy Ergo.chat to clipboard">
+          <span class="social-copy-label">Ergo.chat</span>
+        </button>
+      
+    
+      
+        <button type="button" class="social-link social-copy" data-copy="@bullshar_k:matrix.org" title="Copy Matrix to clipboard">
+          <span class="social-copy-label">Matrix</span>
+        </button>
+      
+    
+      
+        <button type="button" class="social-link social-copy" data-copy="bullsharkgunsemail@pm.me" title="Copy Email to clipboard">
+          <span class="social-copy-label">Email</span>
+        </button>
+      
+    
+  </div>
+  
+</div>
+
+<script>
+(function () {
+  var btns = document.querySelectorAll('.social-copy');
+  btns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var text = btn.getAttribute('data-copy');
+      var label = btn.querySelector('.social-copy-label, .contact-social-name');
+      var original = label ? label.textContent : btn.textContent;
+
+      function done() {
+        label.textContent = 'Copied!';
+        setTimeout(function () { label.textContent = original; }, 1500);
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(done);
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(ta);
+        done();
+      }
+    });
+  });
+})();
+</script>
+
+  </div>
+
+  
+
+  
+    <script type="text/javascript" src="/js/bundle.min.5993fcb11c07dea925a3fbd58c03c7f1857197c35fccce3aa963a12c0b3c9960.js"></script>
+  
+
+  
+  
+
+  
+  
+  
+    
+  
+
+  
+
+  
+
+</body>
+</html>

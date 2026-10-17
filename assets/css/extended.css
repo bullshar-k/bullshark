@@ -1,3 +1,84 @@
+/*
+ * Code blocks.
+ *
+ * Hugo only wraps fenced code in <div class="highlight"> when the fence has a
+ * language tag. Plain ``` fences render as a bare <pre><code>, so style every
+ * <pre> in the content and treat both cases the same.
+ */
+
+.content pre {
+  position: relative;
+  margin: 24px 0;
+  padding: 16px 18px;
+  background: var(--surface-container-low);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--border-radius);
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.65;
+  tab-size: 2;
+}
+
+/* The theme colours inline <code>; strip that back off inside a block. */
+.content pre code {
+  display: block;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  color: var(--on-surface);
+  font-size: inherit;
+  white-space: pre;
+}
+
+/* Keep the box look consistent when a language tag IS present. */
+.content .highlight {
+  margin: 24px 0;
+}
+
+.content .highlight pre {
+  margin: 0;
+  background: var(--surface-container-low);
+  border: 1px solid var(--outline-variant);
+  box-shadow: none;
+}
+
+/* Wrapper injected by code-copy.js so the button can sit over the block. */
+.content .code-block {
+  position: relative;
+}
+
+.content .code-copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 1;
+  padding: 4px 10px;
+  font-family: var(--font-family-paragraph);
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--on-surface-variant);
+  background: var(--surface-container-high);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--border-radius-small);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.content .code-block:hover .code-copy-btn,
+.content .code-copy-btn:focus-visible {
+  opacity: 1;
+}
+
+.content .code-copy-btn:hover {
+  color: var(--on-surface);
+  border-color: var(--outline);
+}
+
+.content .code-copy-btn.is-copied {
+  color: var(--primary);
+  opacity: 1;
+}
 .social-link.social-copy {
   background: none;
   border: none;

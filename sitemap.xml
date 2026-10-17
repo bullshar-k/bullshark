@@ -3,10 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://bullshark.win/posts/</loc>
-    <lastmod>2026-10-11T00:00:00+00:00</lastmod>
+    <lastmod>2026-10-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://bullshark.win/</loc>
-    <lastmod>2026-10-11T00:00:00+00:00</lastmod>
+    <lastmod>2026-10-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://bullshark.win/posts/gitea/</loc>
+    <lastmod>2026-10-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://bullshark.win/posts/age/</loc>
     <lastmod>2026-10-11T00:00:00+00:00</lastmod>

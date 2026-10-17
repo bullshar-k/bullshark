@@ -11,7 +11,7 @@
     
     
     <link rel="stylesheet" href="/css/style.min.1c18def2aed6b057aa439fbec51b1d6f55f2d2d8073fe48390bceb467a226be6.css">
-    <link rel="stylesheet" href="/assets/css/extended.min.2b1b6b49935b83e767eb16e2d7e2fb6e6f0db844856efc36bc5a4829d2b387ed.css">
+    <link rel="stylesheet" href="/assets/css/extended.min.af344e5a57f4d9e7c39fa06165c356ccbd4a1515b2ce3c8d9fe54d55f256350e.css">
 
   
     <meta name="description" content="The most private VPN is your own"/>
@@ -134,13 +134,13 @@ go build main.go
 ./main -peer 10 -dest server_ip -port 51855
 mv server.conf /etc/wireguard
 wg-quick up server
-</code></pre><p>From there you move the client 1-10 onto the appropriate clients and use wg-quick up on them too.
+</code></pre><p>From there you move the client 1-10 onto the appropriate clients and use wg-quick up on them too.<br>
 Depending on your VPS you may need traffic forwarding post up rules like this;</p>
 <pre tabindex="0"><code>PostUp = iptables -A FORWARD -i server -j ACCEPT
 PostUp = iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 PostDown = iptables -D FORWARD -i server -j ACCEPT
 PostDown = iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
-</code></pre><p><em>If it isn&rsquo;t apparent this goes in the <code>[INTERFACE]</code> section after the interface info before the first <code>[PEER]</code>
+</code></pre><p><em>If it isn&rsquo;t apparent this goes in the <code>[INTERFACE]</code> section after the interface info before the first <code>[PEER]</code><br>
 Ensure <code>server</code> is the name of the .conf file as that will be the name of the interface, and <code>eth0</code> is the name of your WAN facing NIC interface.</em></p>
 
     </div>
@@ -244,7 +244,7 @@ Ensure <code>server</code> is the name of the .conf file as that will be the nam
 
   
 
-  
+  <script type="text/javascript" src="/js/code-copy.min.bdb4cb0282effa7fb28595198d8bc21ac6a58f9baac9a7d152e425c7b2aa3a51.js" defer></script>
 
 </body>
 </html>

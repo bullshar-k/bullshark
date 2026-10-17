@@ -11,7 +11,7 @@
     
     
     <link rel="stylesheet" href="/css/style.min.1c18def2aed6b057aa439fbec51b1d6f55f2d2d8073fe48390bceb467a226be6.css">
-    <link rel="stylesheet" href="/assets/css/extended.min.2b1b6b49935b83e767eb16e2d7e2fb6e6f0db844856efc36bc5a4829d2b387ed.css">
+    <link rel="stylesheet" href="/assets/css/extended.min.af344e5a57f4d9e7c39fa06165c356ccbd4a1515b2ce3c8d9fe54d55f256350e.css">
 
   
     <meta name="description" content="Setting up adguard home, and mostly my issues with LAN sharing on Mullvad"/>
@@ -130,7 +130,7 @@
 <p>Very easy, good jobs on the devs overall. My upstream is <code>9.9.9.9:853</code> and I have wireguard running on that VM so it proxies to one of my VPSes in another country.</p>
 <hr>
 <h2 id="mullvad-linux-client-lan-sharing">Mullvad linux client LAN sharing</h2>
-<p>It does NOT play nice. It does not let you use your own DNS even with lockdown mode off, LAN sharing on, and custom DNS enabled. DNS goes out and it doesn&rsquo;t get it back from adguard because mullvad actually never changes the interfaces DNS to the custom one.
+<p>It does NOT play nice. It does not let you use your own DNS even with lockdown mode off, LAN sharing on, and custom DNS enabled. DNS goes out and it doesn&rsquo;t get it back from adguard because mullvad actually never changes the interfaces DNS to the custom one.<br>
 It only changes it to SEND dns queries, not RECEIVE, so you are effectively left WITHOUT DNS unless you set it manually like so.</p>
 <pre tabindex="0"><code>sudo resolvectl dns eno1 192.168.1.50
 sudo resolvectl domain eno1 &#34;~.&#34;
@@ -236,7 +236,7 @@ sudo resolvectl domain eno1 &#34;~.&#34;
 
   
 
-  
+  <script type="text/javascript" src="/js/code-copy.min.bdb4cb0282effa7fb28595198d8bc21ac6a58f9baac9a7d152e425c7b2aa3a51.js" defer></script>
 
 </body>
 </html>

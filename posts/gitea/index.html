@@ -126,6 +126,7 @@
     </div>
     <div class="content">
       <h1 id="setup-commands-configs">Setup, commands, configs</h1>
+<hr>
 <h2 id="gitea">Gitea</h2>
 <p><strong>Alpine LXC</strong></p>
 <h3 id="install">Install</h3>
@@ -136,6 +137,7 @@ rc-service gitea start
 <h4 id="test-connectivity-to-postgres">Test connectivity to postgres</h4>
 <pre tabindex="0"><code>psql -h 192.168.1.21 -p 5432 -U gitea -d gitea
 </code></pre><p><code>\q</code> to quit</p>
+<hr>
 <h2 id="postgres">Postgres</h2>
 <p><strong>Debian VM</strong></p>
 <h3 id="install-1">Install</h3>
@@ -157,6 +159,7 @@ and to commit<br>
 <h4 id="troubleshooting">Troubleshooting</h4>
 <p>See running clusters status: <code>pg_lsclusters</code><br>
 Tail verbose log: <code>tail -50 /var/log/postgresql/postgresql-17-main.log</code></p>
+<hr>
 <h1 id="file-config">File config</h1>
 <p>After applying file changes <code>rc-service gitea restart</code> and <code>systemctl restart postgresql</code>.</p>
 <table>
@@ -207,6 +210,7 @@ USER = gitea
 PASSWD = epic_password
 SSL_MODE = disable
 </code></pre><p>Address is postgres&rsquo;s, port 5432 can be configured in postgresql.conf on line 64. Password should match the postgres CREATE ROLE password.</p>
+<hr>
 <h1 id="post-set-up-use">Post set up use</h1>
 <h4 id="initialize-gitea-and-make-repo">Initialize gitea and make repo</h4>
 <ul>
